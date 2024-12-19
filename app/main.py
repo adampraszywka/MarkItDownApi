@@ -17,8 +17,7 @@ async def create_upload_file(file: UploadFile):
         result = md.convert_stream(file.file)
         return {
             "filename": file.filename,
-            "size": file.size,
-            "content": result
+            "content": result,
         }
     except UnsupportedFormatException as e:
         raise HTTPException(status_code=415, detail=str(e))
