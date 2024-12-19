@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkItDownApiClient", "MarkItDownApiClient\MarkItDownApiClient.csproj", "{40716BCB-5046-49E5-A9EC-33768C6BE0B2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{841B4729-D58D-426D-93B9-E66839B8BABA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "sample\WebApi\WebApi.csproj", "{792A2A12-BE18-4ABB-8796-A953EB6E3CEB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{40716BCB-5046-49E5-A9EC-33768C6BE0B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40716BCB-5046-49E5-A9EC-33768C6BE0B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40716BCB-5046-49E5-A9EC-33768C6BE0B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40716BCB-5046-49E5-A9EC-33768C6BE0B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{792A2A12-BE18-4ABB-8796-A953EB6E3CEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{792A2A12-BE18-4ABB-8796-A953EB6E3CEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{792A2A12-BE18-4ABB-8796-A953EB6E3CEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{792A2A12-BE18-4ABB-8796-A953EB6E3CEB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{792A2A12-BE18-4ABB-8796-A953EB6E3CEB} = {841B4729-D58D-426D-93B9-E66839B8BABA}
+	EndGlobalSection
+EndGlobal
