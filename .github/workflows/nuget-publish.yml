@@ -44,7 +44,7 @@ jobs:
         working-directory: ./clients/Dotnet
 
       - name: Pack
-        run: dotnet pack MarkItDownClient
+        run: dotnet pack MarkItDownApiClient
         working-directory: ./clients/Dotnet
 
 
