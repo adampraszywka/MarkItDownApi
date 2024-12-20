@@ -30,8 +30,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Dotnet test
+      - name: Install .NET Core
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+
+      - name: Test
         run: dotnet test
+        working-directory: ./clients/Dotnet
+
+      - name: Build
+        run: dotnet build
         working-directory: ./clients/Dotnet
 
 
