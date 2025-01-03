@@ -14,23 +14,23 @@ This repository provides an HTTP wrapper for Microsoft's **MarkItDown** tool, en
 
 ### Start Docker Container
 
-   ```bash
-   docker run --rm --name markitdown-api -p 5000:80 ghcr.io/adampraszywka/markitdownapi:main
-   ```
+```bash
+  docker run --rm --name markitdown-api -p 5000:80 ghcr.io/adampraszywka/markitdownapi:main
+```
 ### Convert Markdown to HTML using HTTP request
     
 Request (curl)
-   ```bash
-   curl -X POST 'http://localhost:5000/read' --form 'file=@"path/to/your/file.pdf"'
-   ```
+```bash
+  curl -X POST 'http://localhost:5000/read' --form 'file=@"path/to/your/file.pdf"'
+```
 Example response
-   ```json
-      {
-          "filename": "file.pdf",
-          "content": {
-              "title": "Lorem Ipsum",
-              "text_content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s..."
-      }
+```json
+{
+    "filename": "file.pdf",
+    "content": {
+        "title": "Lorem Ipsum",
+        "text_content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s..."
+}
 ```
 
 ### .NET Client Library
@@ -55,6 +55,39 @@ Example response
     });
     ```
 
+## Endpoints
+
+### POST /read
+Converts a document to Markdown format.
+
+Request:
+```bash
+   curl -X POST 'http://localhost:5000/read' --form 'file=@"path/to/your/file.pdf"'
+   ```
+
+Response:
+```json
+{
+    "filename": "[FILENAME]",
+    "content": {
+        "title": "[TITLE EXTRACTED FROM THE DOCUMENT]",
+        "text_content": "[CONTENT EXTRACTED FROM THE DOCUMENT]"
+}
+```
+
+### GET /ping
+Health check endpoint.
+
+Request:
+```bash
+   curl -X GET 'http://localhost:5000/ping'
+   ```
+Response:
+```json
+{
+    "status": "ok"
+}
+```
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
