@@ -7,7 +7,7 @@ public static class ServiceProviderExtensions
 {
     public static IHttpClientBuilder AddMarkItDownApiClient(this IServiceCollection services, Uri baseUri)
     {
-        return services.AddHttpClient<MarkItDownClient>(httpClient =>
+        return services.AddHttpClient<MarkItDownClient, HttpMarkItDownClient>(httpClient =>
         {
             httpClient.BaseAddress = baseUri;
         });
