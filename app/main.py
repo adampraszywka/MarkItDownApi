@@ -3,10 +3,14 @@ from markitdown import MarkItDown, UnsupportedFormatException, FileConversionExc
 
 from configuration import Configuration
 
-app = FastAPI()
+app = FastAPI(swagger_ui_parameters={})
 configuration = Configuration()
 
-@app.post("/read")
+@app.get("/ping", summary="Health check")
+async def health_check():
+    return {"status": "ok"}
+
+@app.post("/read", summary="Convert document into plain text")
 async def create_upload_file(file: UploadFile):
     md = MarkItDown()
 
