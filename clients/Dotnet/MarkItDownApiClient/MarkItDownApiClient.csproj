@@ -4,7 +4,7 @@
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <PackageId>MatkItDownApi.Client</PackageId>
+        <PackageId>MarkItDownApi.Client</PackageId>
         <Version>0.0.1</Version>
         <Authors>Adam Praszywka</Authors>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
