@@ -1,15 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <PackageId>MarkItDownApi.Client</PackageId>
-        <Version>0.0.1</Version>
+        <Version>0.1.0</Version>
         <Authors>Adam Praszywka</Authors>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <RepositoryUrl>https://github.com/adampraszywka/MarkItDownApi</RepositoryUrl>
+        <TargetFrameworks>net9.0;net8.0</TargetFrameworks>
+        <LangVersion>12</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>

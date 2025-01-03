@@ -3,7 +3,7 @@ using MarkItDownApiClient.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddMarkItDownApiClient(new Uri("http://127.0.0.1:8000"));
+builder.Services.AddMarkItDownApiClient(new Uri("http://192.168.10.40:5000"));
 
 var app = builder.Build();
 
