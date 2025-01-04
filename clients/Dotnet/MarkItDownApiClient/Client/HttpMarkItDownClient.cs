@@ -1,3 +1,4 @@
+using System.Net;
 using System.Net.Http.Json;
 using System.Text.Json;
 using MarkItDownApiClient.Dto;
@@ -18,11 +19,24 @@ public class HttpMarkItDownClient(HttpClient client) : MarkItDownClient
         
         using var response = await client.PostAsync(ReadEndpoint, formData);
 
-        if (!response.IsSuccessStatusCode)
+        if (response.StatusCode == HttpStatusCode.UnsupportedMediaType)
         {
-            throw new MarkItDownCommunicationError(response.StatusCode, await response.Content.ReadAsStringAsync());
+            var error = await ReadErrorBody(response);
+            throw new UnsupportedMediaFormat(error.Detail);
         }
 
+        if (response.StatusCode == HttpStatusCode.BadRequest)
+        {
+            var error = await ReadErrorBody(response);
+            throw new FileConversionFailure(error.Detail);
+        }
+
+        if (!response.IsSuccessStatusCode)
+        {
+            var error = await ReadErrorBody(response);
+            throw new UnknownProblem(response.StatusCode, error?.Detail, null);
+        }
+        
         try
         {
             var responseContent = await response.Content.ReadFromJsonAsync<Response>(new JsonSerializerOptions
@@ -31,14 +45,29 @@ public class HttpMarkItDownClient(HttpClient client) : MarkItDownClient
             });
             if (responseContent is null)
             {
-                throw new MarkItDownFormatError(await response.Content.ReadAsStringAsync(), null);
+                var error = await ReadErrorBody(response);
+                throw new UnknownProblem(response.StatusCode, error?.Detail, null);
             }
 
             return responseContent;
         }
         catch (Exception ex)
         {
-            throw new MarkItDownFormatError(await response.Content.ReadAsStringAsync(), ex);
+            var error = await ReadErrorBody(response);
+            throw new UnknownProblem(response.StatusCode, error?.Detail, ex);
+        }
+    }
+
+    private static async Task<Error> ReadErrorBody(HttpResponseMessage response)
+    {
+        try
+        {
+            var error = await response.Content.ReadFromJsonAsync<Error>();
+            return error ?? new Error("An unknown problem occurred. Cannot read error content.");
+        }
+        catch (Exception)
+        {
+            return new Error("An unknown problem occurred. Cannot read error content.");
         }
     }
 }
