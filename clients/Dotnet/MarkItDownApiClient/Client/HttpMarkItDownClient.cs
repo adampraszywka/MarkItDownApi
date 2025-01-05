@@ -19,16 +19,22 @@ public class HttpMarkItDownClient(HttpClient client) : MarkItDownClient
         
         using var response = await client.PostAsync(ReadEndpoint, formData);
 
-        if (response.StatusCode == HttpStatusCode.UnsupportedMediaType)
+        switch (response.StatusCode)
         {
-            var error = await ReadErrorBody(response);
-            throw new UnsupportedMediaFormat(error.Detail);
-        }
-
-        if (response.StatusCode == HttpStatusCode.BadRequest)
-        {
-            var error = await ReadErrorBody(response);
-            throw new FileConversionFailure(error.Detail);
+            case HttpStatusCode.UnsupportedMediaType:
+            {
+                var error = await ReadErrorBody(response);
+                throw new UnsupportedMediaFormat(error.Detail);
+            }
+            case HttpStatusCode.BadRequest:
+            {
+                var error = await ReadErrorBody(response);
+                throw new FileConversionFailure(error.Detail);
+            }
+            case HttpStatusCode.RequestEntityTooLarge:
+            {
+                throw new FileTooLarge();
+            }
         }
 
         if (!response.IsSuccessStatusCode)

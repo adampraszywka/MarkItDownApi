@@ -95,4 +95,19 @@ public class HttpMarkItDownClientTests
         var ex = Assert.ThrowsAsync<UnknownProblem>(() => client.Read(stream));
         Assert.That(ex.Message, Is.EqualTo("An unknown problem occurred. Cannot read error content."));
     }
+    
+    [Test]
+    public void FileTooLarge()
+    {
+
+        using var fixture = new WireMockTestFixture(_file, Response.Create()
+            .WithStatusCode(413)
+            .WithBody([]));
+        var client = new HttpMarkItDownClient(fixture.Client);
+
+        var stream = new MemoryStream(_file);
+        var ex = Assert.ThrowsAsync<FileTooLarge>(() => client.Read(stream));
+        Assert.That(ex.Message, Is.EqualTo("Provided file exceeds the maximum size set in MarkItDownApi"));
+    }
+    
 }
