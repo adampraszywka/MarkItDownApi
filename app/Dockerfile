@@ -16,7 +16,7 @@ RUN pip install --no-cache-dir pipenv
 
 COPY Pipfile Pipfile.lock /app/
 RUN pipenv install --system --deploy
-COPY . /app
+COPY ./app /app
 EXPOSE 80
 
 CMD ["fastapi", "run", "main.py", "--port", "80"]

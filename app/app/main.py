@@ -1,10 +1,11 @@
 from fastapi import FastAPI, UploadFile, HTTPException
 from markitdown import MarkItDown, UnsupportedFormatException, FileConversionException
 
-from configuration import Configuration
+from app.configuration.configuration import Configuration
+from app.configuration.environment_variables import EnvironmentVariables
 
 app = FastAPI(swagger_ui_parameters={})
-configuration = Configuration()
+configuration = Configuration(EnvironmentVariables())
 
 @app.get("/ping", summary="Health check")
 async def health_check():
