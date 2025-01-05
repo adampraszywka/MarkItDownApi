@@ -20,6 +20,7 @@ typing-extensions = "==4.12.2"
 uvicorn = "==0.34.0"
 markitdown = "*"
 python-multipart = "*"
+pytest = "*"
 
 [dev-packages]
 
