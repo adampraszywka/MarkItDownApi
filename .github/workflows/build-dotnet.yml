@@ -49,3 +49,9 @@ jobs:
       - name: Pack
         run: dotnet pack -c Release
         working-directory: clients/Dotnet
+        
+      # Save as an artifact
+      - name: Archive
+        uses: actions/upload-artifact@v2
+        with:
+          path: 'MarkItDownApi/MarkItDownApi/clients/Dotnet/MarkItDownApiClient/bin/Release/MarkItDownApi.Client.*.nupkg'
