@@ -8,23 +8,9 @@ on:
   pull_request:
     branches: [ "main" ]
 
-jobs:
-  prepare-env:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Extract version from tag
-        run: |
-            if [[ $GITHUB_REF == refs/tags/v* ]]; then
-              VERSION=${GITHUB_REF#refs/tags/v} # Remove 'refs/tags/v' prefix
-            else
-              VERSION="0.0.1"
-            fi
-            echo "Extracted version: $VERSION"
-            echo "VERSION=$VERSION" >> $GITHUB_ENV
-  
+jobs:  
   test:
     runs-on: ubuntu-latest
-    needs: prepare-env
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -48,6 +34,16 @@ jobs:
       # with sigstore/fulcio when running outside of PRs.
       id-token: write
     steps:
+      - name: Extract version from tag
+        run: |
+          if [[ $GITHUB_REF == refs/tags/v* ]]; then
+            VERSION=${GITHUB_REF#refs/tags/v}
+          else
+            VERSION="0.0.0"
+          fi
+          echo "Extracted version: $VERSION"
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          
       - name: Checkout repository
         uses: actions/checkout@v4
         
