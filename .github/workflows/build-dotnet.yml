@@ -62,7 +62,7 @@ jobs:
           
       # extract version from tag
       - name: Pack
-        run: dotnet pack -c Release --property:Version=${{VERSION}}
+        run: dotnet pack -c Release --property:Version=${{env.VERSION}}
         working-directory: clients/Dotnet
         
       # Save as an artifact
