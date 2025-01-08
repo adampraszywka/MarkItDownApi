@@ -9,8 +9,22 @@ on:
     branches: [ "main" ]
 
 jobs:
+  prepare-env:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Extract version from tag
+        run: |
+            if [[ $GITHUB_REF == refs/tags/v* ]]; then
+              VERSION=${GITHUB_REF#refs/tags/v} # Remove 'refs/tags/v' prefix
+            else
+              VERSION="0.0.1"
+            fi
+            echo "Extracted version: $VERSION"
+            echo "VERSION=$VERSION" >> $GITHUB_ENV
+  
   test:
     runs-on: ubuntu-latest
+    needs: prepare-env
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -46,8 +60,9 @@ jobs:
         run: dotnet restore
         working-directory: clients/Dotnet
           
+      # extract version from tag
       - name: Pack
-        run: dotnet pack -c Release
+        run: dotnet pack -c Release --property:Version=${{VERSION}}
         working-directory: clients/Dotnet
         
       # Save as an artifact
