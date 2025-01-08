@@ -90,5 +90,6 @@ jobs:
       - name: List files
         run: ls package
         
-#      - name: Publish
-#        run: dotnet nuget push clients/Dotnet/MarkItDownApiClient/bin/Release/MarkItDownApi.Client.*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}
+      - name: Publish
+        if: github.event_name == 'push' && github.ref == 'refs/tags/v*.*.*'
+        run: dotnet nuget push package/MarkItDownApi.Client.*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}
