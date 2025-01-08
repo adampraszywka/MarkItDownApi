@@ -54,4 +54,4 @@ jobs:
       - name: Archive
         uses: actions/upload-artifact@v4
         with:
-          path: 'MarkItDownApi/MarkItDownApi/clients/Dotnet/MarkItDownApiClient/bin/Release/MarkItDownApi.Client.*.nupkg'
+          path: 'clients/Dotnet/MarkItDownApiClient/bin/Release/MarkItDownApi.Client.*.nupkg'
