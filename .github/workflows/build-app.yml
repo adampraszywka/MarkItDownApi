@@ -1,4 +1,4 @@
-name: Docker
+name: Build and push app Docker image 
 
 # This workflow uses actions that are not certified by GitHub.
 # They are provided by a third-party and are governed by
@@ -21,8 +21,7 @@ env:
 
 
 jobs:
-  build:
-
+  build-and-push-app:
     runs-on: ubuntu-latest
     permissions:
       contents: read
