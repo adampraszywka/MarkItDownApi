@@ -71,7 +71,7 @@ jobs:
           dotnet-version: 9.0.x
           
       - name: Download artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: nuget-package
           path: package
