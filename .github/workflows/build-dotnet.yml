@@ -55,3 +55,29 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           path: 'clients/Dotnet/MarkItDownApiClient/bin/Release/MarkItDownApi.Client.*.nupkg'
+          name: 'nuget-package'
+          
+  nuget-publish:
+    runs-on: ubuntu-latest
+    needs: build-and-push
+    if: github.event_name == 'push' && github.ref == 'refs/tags/v*.*.*'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 9.0.x
+          
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: nuget-package
+          path: package
+          
+      - name: List files
+        run: ls package
+        
+#      - name: Publish
+#        run: dotnet nuget push clients/Dotnet/MarkItDownApiClient/bin/Release/MarkItDownApi.Client.*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}
