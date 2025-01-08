@@ -60,7 +60,7 @@ jobs:
   nuget-publish:
     runs-on: ubuntu-latest
     needs: build-and-push
-    if: github.event_name == 'push' && github.ref == 'refs/tags/v*.*.*'
+#    if: github.event_name == 'push' && github.ref == 'refs/tags/v*.*.*'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
