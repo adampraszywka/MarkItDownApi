@@ -1,3 +1,7 @@
 namespace MarkItDownApiClient.Dto;
 
-public record Content(string Title, string TextContent);
+public class Content(string title, string textContent)
+{
+    public string Title { get; } = title;
+    public string TextContent { get; } = textContent;
+}
