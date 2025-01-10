@@ -1,3 +1,8 @@
 namespace MarkItDownApiClient.Dto;
 
-public record Response(string Filename, int Size, Content Content);
+public class Response(string filename, int size, Content content)
+{
+    public string Filename { get; } = filename;
+    public int Size { get; } = size;
+    public Content Content { get; } = content;
+}
