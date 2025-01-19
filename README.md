@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository provides an HTTP wrapper for Microsoft's **MarkItDown** tool, enabling users to easily integrate and utilize its functionality via RESTful API endpoints. This project simplifies the process of interacting with MarkItDown by abstracting the tool's core features into an accessible web service.
+This repository provides an HTTP wrapper for Microsoft's **MarkItDown** (https://github.com/microsoft/markitdown) tool, enabling users to easily integrate and utilize its functionality via RESTful API endpoints. This project simplifies the process of interacting with MarkItDown by abstracting the tool's core features into an accessible web service.
 
 ## Features
 
