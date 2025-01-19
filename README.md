@@ -28,8 +28,9 @@ Example response
 {
     "filename": "file.pdf",
     "content": {
-        "title": "Lorem Ipsum",
-        "text_content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s..."
+      "title": "Lorem Ipsum",
+      "text_content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s..."
+    }
 }
 ```
 
@@ -70,8 +71,9 @@ Response:
 {
     "filename": "[FILENAME]",
     "content": {
-        "title": "[TITLE EXTRACTED FROM THE DOCUMENT]",
-        "text_content": "[CONTENT EXTRACTED FROM THE DOCUMENT]"
+      "title": "[TITLE EXTRACTED FROM THE DOCUMENT]",
+      "text_content": "[CONTENT EXTRACTED FROM THE DOCUMENT]"
+    }
 }
 ```
 
@@ -88,6 +90,19 @@ Response:
     "status": "ok"
 }
 ```
+
+## Image description using LLM
+
+Markitdown uses OpenAI LLMs to generate text descriptions for images. 
+Set the following env variables to enable this feature:
+- `OPENAI_API_KEY` - OpenAI API key
+- `OPENAI_MODEL` - OpenAI model name (e.g. `gpt-4o`)
+
+The following variables are optional, and can be used to utilize markitdown with organization-specific OpenAI accounts:
+- `OPENAI_ORG_ID` - OpenAI organization ID
+- `OPENAI_PROJECT_ID` - OpenAI project ID
+- `OPENAI_BASE_URL` - OpenAI base URL
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
