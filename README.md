@@ -93,6 +93,8 @@ Response:
 
 ## Image description using LLM
 
+**OpenAI account is optional. If there is no OpenAI account, the image description feature will be disabled.**
+
 Markitdown uses OpenAI LLMs to generate text descriptions for images. 
 Set the following env variables to enable this feature:
 - `OPENAI_API_KEY` - OpenAI API key
